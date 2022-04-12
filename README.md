@@ -2,7 +2,10 @@
 Material for course Programmiersprachen 1 (SS 2022) - Universität Tübingen
 
 ## Schedule
-- April 20. Lecture
+1st Lecture: April 20
 
 ## Homework
-- [1st homework](exercises/01Hw.scala)
+[1st homework](exercises/01Hw.scala)
+
+## Lecture Notes
+Lecture notes are available [here](https://ps-tuebingen-courses.github.io/pl1-lecture-notes/).
