@@ -14,7 +14,8 @@ Write in the email:
 - name of your GitHub account (register under github.com if you do not have one yet)
 - optionally: programming languages you already know
 
-You will receive an invitation to our forum for Programmiersprachen 1.
+You will receive an invitation to our forum for Programmiersprachen 1 (this
+may take some time as it is not an automatic respsonse).
 In the "Organisatorisches" post you will find everything necessary
 to get you started. Read that post first and follow the instructions.
 
