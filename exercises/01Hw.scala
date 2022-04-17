@@ -7,8 +7,8 @@ by sending an email to Marius Müller:
 mari.mueller@uni-tuebingen.de
 
 Write in the email:
-- name
 - Matrikelnummer
+- name
 - Studiengang + Abschluss (BSc, MSc, ...)
 - Fachsemester
 - name of your GitHub account (register under github.com if you do not have one yet)
