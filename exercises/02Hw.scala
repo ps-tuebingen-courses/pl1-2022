@@ -40,7 +40,7 @@ Subtasks:
 
       1) Translate countVisitor and printVisitor to a definition using pattern matching.
       Example: Translating the eval visitor in this way leads to the eval method for object AE from the lecture.
-      (https://github.com/ps-tuebingen-courses/pl1-2021/blob/master/lecturenotes/04-desugaring.scala)
+      (https://ps-tuebingen-courses.github.io/pl1-lecture-notes/04-desugaring/desugaring.html)
 */
 }
 
