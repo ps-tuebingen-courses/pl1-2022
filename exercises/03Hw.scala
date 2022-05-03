@@ -124,7 +124,7 @@ Task 2: Static Scoping vs. Dynamic Scoping
 object Hw03Task2 {
 /**
 Consider the environment-based interpreter for the language `F1WAE` from
-the script (https://ps-tuebingen-courses.github.io/pl1-lecture-notes/06-first-order-functions/first-order-functions.html):
+the lecture notes (https://ps-tuebingen-courses.github.io/pl1-lecture-notes/06-first-order-functions/first-order-functions.html):
 */
 
 object Syntax {
@@ -181,7 +181,7 @@ def evalDynScope(funs: Funs, env: Env, e: Exp) : Int = e match {
 }
 
 /**
-The following example from the script yields a result with the dynamically scoped
+The following example from the lecture notes yields a result with the dynamically scoped
 interpreter, but fails with the statically scoped interpreter.
 */
 
