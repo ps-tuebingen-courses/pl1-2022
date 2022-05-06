@@ -20,10 +20,10 @@ Consider the definition for the count visitor and the print visitor for AE from 
 */
 case class Visitor[T](num: Int => T, add: (T, T) => T)
 
-sealed trait Exp
-
-case class Num(n: Int) extends Exp
-case class Add(lhs: Exp, rhs: Exp) extends Exp
+enum Exp:
+  case Num(n: Int)
+  case Add(lhs: Exp, rhs: Exp)
+import Exp._
 
 // Fold using visitors
 def foldExp[T](v: Visitor[T], e: Exp): T =
@@ -56,13 +56,14 @@ object Hw02Task2 {
 /**
 Consider again the language of propositional logic formulae from the previous homework:
 */
-sealed abstract class Exp
-case class True() extends Exp  // constant true
-case class False() extends Exp // constant false
-case class And(lhs: Exp, rhs: Exp) extends Exp
-case class Or(lhs: Exp, rhs: Exp) extends Exp
-case class Not(e: Exp) extends Exp
-case class Impl(lhs: Exp, rhs: Exp) extends Exp
+enum Exp:
+  case  True()  // constant true
+  case  False() // constant false
+  case  And(lhs: Exp, rhs: Exp)
+  case  Or(lhs: Exp, rhs: Exp)
+  case  Not(e: Exp)
+  case  Impl(lhs: Exp, rhs: Exp)
+import Exp._
 
 def eval(e: Exp) : Boolean = e match {
   case True()     => true

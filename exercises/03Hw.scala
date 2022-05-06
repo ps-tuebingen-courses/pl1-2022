@@ -12,27 +12,34 @@ Task 1: Binding constructs (2 subtasks, plus 1 optional subtask)
 */
 object Hw03Task1 {
 /**
-Consider the language of arithmetic expressions with "with",
-as illustrated by the following abstract syntax:
+Consider the language of arithmetic expressions with "with", extended
+with two new binding constructs as illustrated by the following abstract syntax:
 */
-sealed abstract class Exp
-case class Num(n: Int) extends Exp
-case class Add(lhs: Exp, rhs: Exp) extends Exp
-case class Mul(lhs: Exp, rhs: Exp) extends Exp
-case class Id(x: String) extends Exp
-case class With(x: String, xdef: Exp, body: Exp) extends Exp
+enum Exp:
+  case Num(n: Int)
+  case Add(lhs: Exp, rhs: Exp)
+  case Mul(lhs: Exp, rhs: Exp)
+  case Id(x: String)
+  case With(x: String, xdef: Exp, body: Exp)
+  /** New binding constructs "Let" and "LetStar" */
+  case Let(defs: List[(String, Exp)], body: Exp)
+  case LetStar(defs: List[(String, Exp)], body: Exp)
+
+object Exp:
+  /** We use implicits again to make example programs less verbose. */
+  implicit def num2exp(n: Int): Exp = Num(n)
+  implicit def sym2exp(x: String): Exp = Id(x)
+
+import Exp._
 
 /**
-We use implicits again to make example programs less verbose.
+Your task is to extend the language with the following new binding
+construct Let (for LetStar see below).
 */
-implicit def num2exp(n: Int): Exp = Num(n)
-implicit def sym2exp(x: String): Exp = Id(x)
-
 /**
-Your task is to extend the language with the following new binding construct:
+Note: The names "Let" and "LetStar" have been choosen in analogy to the
+"let" and "let*" binding constructs in Scheme and Racket.
 */
-
-case class Let(defs: List[(String, Exp)], body: Exp) extends Exp
 
 /**
 The purpose of the Let construct is to bind a list of identifiers in such a way
@@ -44,11 +51,6 @@ For instance, the following test case should evaluate to 7 and not to 11:
 val test1 =
   With("x", 1,
    Let(List("x" -> 5, "y" -> Add("x",1)),Add("x","y")))
-
-/**
-Note: The names "Let" and "LetStar" (see below) have been choosen in analogy to the
-"let" and "let*" binding constructs in Scheme and Racket.
- */
 
 /**
 Subtasks:
@@ -107,8 +109,6 @@ val test2 =
      With("x", 1,
       LetStar(List("x" -> 5, "y" -> Add("x",1)),Add("x","y")))
 
-case class LetStar(defs: List[(String, Exp)], body: Exp) extends Exp
-
 /**
 Your task: Implement the missing parts of subst and eval to support LetStar.
 (Again, only change the parts currently filled with an error!)
@@ -128,24 +128,27 @@ the lecture notes (https://ps-tuebingen-courses.github.io/pl1-lecture-notes/06-f
 */
 
 object Syntax {
-  sealed abstract class Exp
-  case class Num(n: Int) extends Exp
-  case class Add(lhs: Exp, rhs: Exp) extends Exp
-  case class Mul(lhs: Exp, rhs: Exp) extends Exp
-  case class Id(x: String) extends Exp
-  case class With(x: String, xdef: Exp, body: Exp) extends Exp
-  /** We use implicits again to make example programs less verbose. */
-  implicit def num2exp(n: Int): Exp = Num(n)
-  implicit def string2exp(x: String): Exp = Id(x)
+  enum Exp:
+    case Num(n: Int)
+    case Add(lhs: Exp, rhs: Exp)
+    case Mul(lhs: Exp, rhs: Exp)
+    case Id(x: String)
+    case With(x: String, xdef: Exp, body: Exp)
 
+    /** The new language constructs for first-order functions: */
+    case Call(f: String, args: List[Exp]) // functions are called by name
 
-  /** The new language constructs for first-order functions: */
-  case class Call(f: String, args: List[Exp]) extends Exp // functions are called by name
+  object Exp:
+    /** The new language constructs for first-order functions: */
+    case class FunDef(args: List[String], body: Exp)
+    type Funs = Map[String,FunDef]
 
-  case class FunDef(args: List[String], body: Exp)
-  type Funs = Map[String,FunDef]
+    /** We use implicits again to make example programs less verbose. */
+    implicit def num2exp(n: Int): Exp = Num(n)
+    implicit def string2exp(x: String): Exp = Id(x)
 }
 import Syntax._
+import Exp._
 
 type Env = Map[String,Int]
 

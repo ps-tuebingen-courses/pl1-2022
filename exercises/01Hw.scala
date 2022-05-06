@@ -40,12 +40,13 @@ object Hw01 {
 /**
 Consider the following language of propositional logic formulae:
 */
-sealed abstract class Exp
-case class True() extends Exp  // constant true
-case class False() extends Exp // constant false
-case class And(lhs: Exp, rhs: Exp) extends Exp
-case class Or(lhs: Exp, rhs: Exp) extends Exp
-case class Not(e: Exp) extends Exp
+enum Exp:
+  case True()  // constant true
+  case False() // constant false
+  case And(lhs: Exp, rhs: Exp)
+  case Or(lhs: Exp, rhs: Exp)
+  case Not(e: Exp)
+import Exp._
 
 /**
 Tasks:
