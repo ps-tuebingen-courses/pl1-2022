@@ -12,8 +12,9 @@ Task 1: Binding constructs (2 subtasks, plus 1 optional subtask)
 */
 object Hw03Task1 {
 /**
-Consider the language of arithmetic expressions with "with", extended
-with two new binding constructs as illustrated by the following abstract syntax:
+Consider the language of arithmetic expressions with "with",
+(see https://ps-tuebingen-courses.github.io/pl1-lecture-notes/05-name-binding/name-binding.html)
+extended with two new binding constructs as illustrated by the following abstract syntax:
 */
 enum Exp:
   case Num(n: Int)

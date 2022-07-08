@@ -16,7 +16,8 @@ Task 1: Visitors (1 subtask)
 
 object Hw02Task1 {
 /**
-Consider the definition for the count visitor and the print visitor for AE from the lecture.
+Consider the definition for the count visitor and the print visitor for AE from the lecture
+(see https://ps-tuebingen-courses.github.io/pl1-lecture-notes/03-arithmetic-expressions/arithmetic-expressions.html).
 */
 case class Visitor[T](num: Int => T, add: (T, T) => T)
 
