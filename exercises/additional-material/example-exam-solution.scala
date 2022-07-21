@@ -74,6 +74,40 @@ def product_defun(l1: List[Int], l2: List[Int]): List[(Int, Int)] =
 import Defun._
 assert(product(List(1, 2, 3), List(3, 4, 5)) == product_defun(List(1, 2, 3), List(3, 4, 5)))
 
+// Alternative using one GADT
+
+object DefunGADT {
+
+enum FunctionValueInt[T]:
+  case F2(x: Int) extends FunctionValueInt[(Int, Int)]
+  case F1(l2 : List[Int]) extends FunctionValueInt[List[(Int, Int)]]
+import FunctionValueInt._
+
+def apply[T](f: FunctionValueInt[T], y: Int): T =
+  f match {
+    case F2(x) => (x, y)
+    case F1(l2) => map_defun(l2)(F2(y))
+  }
+
+def map_defun(xs: List[Int])(f: FunctionValueInt[(Int, Int)]): List[(Int, Int)] =
+  xs match {
+    case Nil     => Nil
+    case x :: xs => apply(f, x) :: map_defun(xs)(f)
+  }
+
+def flatMap_defun(xs: List[Int])(f: FunctionValueInt[List[(Int, Int)]]): List[(Int, Int)] =
+  xs match {
+    case Nil     => Nil
+    case x :: xs => apply(f, x) ++ flatMap_defun(xs)(f)
+  }
+
+def product_defun(l1: List[Int], l2: List[Int]): List[(Int, Int)] =
+  flatMap_defun(l1)(F1(l2))
+
+}
+
+import DefunGADT._
+assert(product(List(1, 2, 3), List(3, 4, 5)) == product_defun(List(1, 2, 3), List(3, 4, 5)))
 
 
 // Multiple Choice
