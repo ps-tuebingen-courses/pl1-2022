@@ -6,12 +6,13 @@ by sending an email to Marius Müller:
 
 mari.mueller@uni-tuebingen.de
 
-Write in the email:
+Write in the e-mail:
 - Matrikelnummer
 - name
 - Studiengang + Abschluss (BSc, MSc, ...)
 - Fachsemester
 - name of your GitHub account (register under github.com if you do not have one yet)
+- your student e-mail address
 - optionally: programming languages you already know
 
 You will receive an invitation to our forum for Programmiersprachen 1 (this
